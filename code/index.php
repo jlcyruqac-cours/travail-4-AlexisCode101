@@ -1,18 +1,18 @@
 <?php
-/* 
-	Title: SmallCMS
-	Descr: Mini gestionnaire de contenu base sur flasklike
-	Author: Jean-Luc Cyr
-	Date: 2019/10/18
-*/
+
 require('flasklike.php');
 
 function zodiac($day, $month)
 {
-    // returns the zodiac sign according to $day and $month ( https://coursesweb.net/ )
-    $zodiac = array('', 'Capricorne', 'Verseau', 'Poisson', 'Bélier', 'Taureau', 'Gémeaux', 'Cancer', 'Lion', 'Vierge', 'Balance', 'Scorpion', 'Sagittaire', 'Capricorne');
-    $last_day = array('', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19);
-    return ($day > $last_day[$month]) ? $zodiac[$month + 1] : $zodiac[$month];
+    // Remove 0 before day and month
+    $day = (int)$day;
+    $month = (int)$month;
+
+    $zodiac = array('', 'Capricorne', 'Verseau', 'Poissons', 'Bélier', 'Taureau', 'Gémeaux', 'Cancer', 'Lion', 'Vierge', 'Balance', 'Scorpion', 'Sagittaire', 'Capricorne');
+    $last_day = array('', 20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22);
+
+    // Return Zodiac sign
+    return ($day < $last_day[$month]) ? $zodiac[$month] : $zodiac[$month + 1];
 }
 
 ////////////////////////////////////////////////////////////////
@@ -22,23 +22,6 @@ $route_defs['/']['GET'] =
         $params = ['page_title' => 'Horoscope',
         ];
         fl_render_template('templates/index.html', $params);
-    };
-
-////////////////////////////////////////////////////////////////
-// Tentative de connexion
-$route_defs['/']['POST'] =
-    function () {
-        $params = ['fname' => $_POST['first_name'],
-            'lname' => $_POST['last_name'],
-        ];
-        if (fl_auth($_POST['user'], $_POST['pass'])) {
-            fl_redirect('/menu');
-            $params['message'] = "Login OK";
-            fl_render_template('index2.html', $params);
-        } else {
-            $params['message'] = "Informations invalides";
-            fl_render_template('index2.html', $params);
-        }
     };
 
 ////////////////////////////////////////////////////////////////
