@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{{ page_title }}</title>
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="game_title">
+    <h1 id="app_title">{{ app_title }}</h1>
+</div>
+
+<div id="personnal_info_input_box">
+    <div class="input_entry">
+        <label for="last_name_input">Nom : </label>
+        <input id="last_name_input" type="text">
+    </div>
+    <div class="input_entry">
+        <label for="first_name_input">Prénom : </label>
+        <input id="first_name_input" type="text">
+    </div>
+    <div class="input_entry">
+        <label for="birthday_date_input">Date de naissance : </label>
+        <input id="birthday_date_input" type="text">
+    </div>
+    <button type="button" id="reset_input" class="ui-button">Effacer</button>
+    <button type="button" id="request_horoscope" class="ui-button">Voir mon horoscope</button>
+</div>
+
+<div id="horoscope_display"></div>
+
+<div>
+    <img id="question_img" src="../static/img/logo.jpg" alt="Image non trouvé"/>
+</div>
+
+
+<script src="../static/vendor/jquery-3.4.1.min.js"></script>
+<script src="../static/vendor/jquery-ui.min.js"></script>
+<script src="../static/js/custom_script.js"></script>
+</body>
+</html>
